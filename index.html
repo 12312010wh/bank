@@ -140,7 +140,11 @@ placeholder="ابحث عن عضو...">
 
 <script src="script.js"></script>
 <script type="module">
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 const firebaseConfig = {
+    const db = getFirestore(app);
   apiKey: "AIzaSyBO1zyoxc61Z2xQTjGk9aRY-aWGm94213w",
   authDomain: "bank-ba692.firebaseapp.com",
   projectId: "bank-ba692",
