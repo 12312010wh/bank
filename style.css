@@ -1,0 +1,124 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0d0d0d;
+    color:#fff;
+}
+
+.header{
+    background:#111;
+    border-bottom:3px solid gold;
+    text-align:center;
+    padding:20px;
+}
+
+.header h1{
+    color:gold;
+    margin-bottom:8px;
+}
+
+.container{
+    width:95%;
+    margin:20px auto;
+}
+
+.topBar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.topBar button{
+    background:gold;
+    color:#000;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.search input{
+    width:100%;
+    padding:12px;
+    margin-bottom:20px;
+    background:#1b1b1b;
+    color:white;
+    border:1px solid gold;
+    border-radius:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#181818;
+}
+
+th{
+    background:gold;
+    color:black;
+    padding:12px;
+}
+
+td{
+    text-align:center;
+    padding:12px;
+    border-bottom:1px solid #333;
+}
+
+tr:hover{
+    background:#242424;
+}
+
+td button{
+    padding:6px 10px;
+    margin:2px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-box{
+    width:360px;
+    background:#1a1a1a;
+    border:2px solid gold;
+    border-radius:10px;
+    padding:20px;
+}
+
+.popup-box input,
+.popup-box select{
+    width:100%;
+    margin:10px 0;
+    padding:10px;
+    background:#111;
+    color:white;
+    border:1px solid gold;
+    border-radius:6px;
+}
+
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
+.buttons button{
+    flex:1;
+    padding:10px;
+    cursor:pointer;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>KAGETSO Kingdom</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <h1>👑 KAGETSO KINGDOM</h1>
+
+    <p>Kingdom Management System</p>
+
+</header>
+
+<div class="container">
+
+<div class="topBar">
+
+<h2>
+
+عدد الأعضاء :
+
+<span id="memberCount">0</span>
+
+</h2>
+
+<button id="addMemberBtn">
+
+إضافة عضو
+
+</button>
+
+</div>
+
+<div class="search">
+
+<input
+
+type="text"
+
+id="searchInput"
+
+placeholder="ابحث عن عضو...">
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>الاسم</th>
+
+<th>الرتبة</th>
+
+<th>الرصيد</th>
+
+<th>الإجراءات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="membersTable">
+
+    </tbody>
+
+</table>
+
+</div>
+
+<div id="popup" class="popup">
+
+    <div class="popup-box">
+
+        <h2>إضافة عضو جديد</h2>
+
+        <input
+            type="text"
+            id="memberName"
+            placeholder="اسم العضو">
+
+        <select id="memberRank">
+
+            <option>الإمبراطور</option>
+            <option>نواب الإمبراطور</option>
+            <option>اللورد</option>
+            <option>الجنرال</option>
+            <option>نواب الجنرال</option>
+            <option>الملك</option>
+            <option>نواب الملك</option>
+            <option>الوزير</option>
+            <option>الدوء</option>
+            <option>نواب الدوء</option>
+            <option>الأدميرال</option>
+            <option>نواب الأدميرال</option>
+            <option>العميد</option>
+            <option>الفارس</option>
+            <option>الملازم</option>
+            <option>حامل البريق</option>
+            <option>حامل الراية</option>
+            <option>عضو</option>
+
+        </select>
+
+        <input
+            type="number"
+            id="memberBalance"
+            placeholder="الرصيد">
+                    <div class="buttons">
+
+            <button id="saveMember">
+                حفظ
+            </button>
+
+            <button id="closePopup">
+                إلغاء
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+
+        
