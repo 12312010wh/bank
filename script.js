@@ -1,4 +1,15 @@
-const members = [];
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+let members = [];
 
 const table = document.getElementById("membersTable");
 const memberCount = document.getElementById("memberCount");
@@ -12,7 +23,27 @@ const searchInput = document.getElementById("searchInput");
 
 let editIndex = -1;
 
+async function loadMembers() {
+
+    members = [];
+
+    const querySnapshot = await getDocs(collection(db, "members"));
+
+    querySnapshot.forEach((memberDoc) => {
+
+        members.push({
+            id: memberDoc.id,
+            ...memberDoc.data()
+        });
+
+    });
+
+    renderTable();
+
+}
+
 addBtn.onclick = () => {
+
     editIndex = -1;
 
     document.getElementById("memberName").value = "";
@@ -20,13 +51,16 @@ addBtn.onclick = () => {
     document.getElementById("memberRank").selectedIndex = 0;
 
     popup.style.display = "flex";
+
 };
 
 closeBtn.onclick = () => {
+
     popup.style.display = "none";
+
 };
 
-saveBtn.onclick = () => {
+saveBtn.onclick = async () => {
 
     const name = document.getElementById("memberName").value.trim();
     const rank = document.getElementById("memberRank").value;
@@ -44,26 +78,31 @@ saveBtn.onclick = () => {
     if (rank === "الإمبراطور" && emperor) {
         alert("يوجد إمبراطور بالفعل");
         return;
-    } 
-        const memberData = {
-        name: name,
-        rank: rank,
-        balance: balance
+    }
+
+    const memberData = {
+        name,
+        rank,
+        balance
     };
+        if (editIndex === -1) {
 
-    if (editIndex === -1) {
-
-        members.push(memberData);
+        await addDoc(collection(db, "members"), memberData);
 
     } else {
 
-        members[editIndex] = memberData;
+        const memberId = members[editIndex].id;
+
+        await updateDoc(
+            doc(db, "members", memberId),
+            memberData
+        );
 
     }
 
     popup.style.display = "none";
 
-    renderTable();
+    await loadMembers();
 
 };
 
@@ -75,6 +114,7 @@ function renderTable() {
 
         table.innerHTML += `
         <tr>
+
             <td>${index + 1}</td>
             <td>${member.name}</td>
             <td>${member.rank}</td>
@@ -117,36 +157,42 @@ function editMember(index) {
 
 }
 
-function deleteMember(index) {
+async function deleteMember(index) {
 
-    if(confirm("هل تريد حذف العضو؟")){
+    if (confirm("هل تريد حذف العضو؟")) {
 
-        members.splice(index,1);
+        await deleteDoc(
+            doc(db, "members", members[index].id)
+        );
 
-        renderTable();
+        await loadMembers();
 
     }
 
 }
 
-searchInput.addEventListener("keyup",function(){
+window.editMember = editMember;
+window.deleteMember = deleteMember;
 
-    const value=this.value.toLowerCase();
+searchInput.addEventListener("keyup", function () {
 
-    const rows=table.querySelectorAll("tr");
+    const value = this.value.toLowerCase();
 
-    rows.forEach(row=>{
+    const rows = table.querySelectorAll("tr");
 
-        if(row.innerText.toLowerCase().includes(value)){
+    rows.forEach(row => {
 
-            row.style.display="";
+        if (row.innerText.toLowerCase().includes(value)) {
 
-        }else{
+            row.style.display = "";
 
-            row.style.display="none";
+        } else {
+
+            row.style.display = "none";
 
         }
 
     });
 
 });
+loadMembers();
